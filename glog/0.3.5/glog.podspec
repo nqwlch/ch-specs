@@ -12,7 +12,10 @@ Pod::Spec.new do |spec|
   spec.homepage = 'https://github.com/google/glog'
   spec.summary = 'Google logging module'
   spec.authors = 'Google'
-
+  spec.libraries = "c++"
+  spec.pod_target_xcconfig = {
+    "CLANG_CXX_LANGUAGE_STANDARD" => "c++20"
+  }
   # 合并的配置脚本内容
   spec.prepare_command = <<-CMD
     #!/bin/bash
