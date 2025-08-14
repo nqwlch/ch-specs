@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
   spec.module_name = 'boost'
   spec.header_dir = 'boost'
   spec.preserve_path = 'boost'
-  spec.header_mappings_dir = 'boost/boost'
+  spec.header_mappings_dir = 'boost'
 
   # spec.resource_bundles = {'boost_privacy' => 'boost/PrivacyInfo.xcprivacy'}
 
