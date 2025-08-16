@@ -25,4 +25,9 @@ Pod::Spec.new do |spec|
   spec.public_header_files = "include/fast_float/*.h"
   spec.header_mappings_dir = "include"
   spec.source_files = ["include/fast_float/*.h"]
+
+  spec.subspec 'CC' do |cc|
+    cc.source_files = ["include/fast_float/*.h"]
+  end
+
 end
