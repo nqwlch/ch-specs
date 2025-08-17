@@ -15,6 +15,11 @@ if version == '1000.0.0'
 else
   source[:tag] = "v#{version}"
 end
+header_search_paths = []
+
+if ENV['USE_FRAMEWORKS']
+  header_search_paths << "\"$(PODS_TARGET_SRCROOT)/../..\"" # this is needed to allow the feature flags access its own files
+end
 
 
 # folly_config = get_folly_config() - 已替换为硬编码值
@@ -30,18 +35,18 @@ Pod::Spec.new do |s|
   s.author                 = "Meta Platforms, Inc. and affiliates"
   s.platforms              = { :ios => '15.1' } # min_supported_versions - 已替换为硬编码值
   s.source                 = source
-  s.source_files           = "*.{cpp,h}"
+  s.source_files           = "react/featureflags/*.{cpp,h}"
   s.compiler_flags         = folly_compiler_flags
-  s.header_dir             = "React-featureflags"
+  s.header_dir             = "react/featureflags"
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++20", # rct_cxx_language_standard() - 已替换为硬编码值
-                               "HEADER_SEARCH_PATHS" => "$(PODS_TARGET_SRCROOT)/React-featureflags"
+                               "HEADER_SEARCH_PATHS" => header_search_paths
                                }
   s.libraries = "stdc++"
 
   s.dependency "RCT-Folly", folly_version
 
   if ENV['USE_FRAMEWORKS']
-    s.module_name            = "React-featureflags"
-    s.header_mappings_dir  = "React-featureflags"
+    s.module_name            = "React_featureflags"
+    s.header_mappings_dir  = "../.."
   end
 end
