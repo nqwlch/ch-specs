@@ -70,8 +70,6 @@ Pod::Spec.new do |spec|
                       'folly/net/detail/*.h',
                       'folly/portability/*.h',
                       'folly/system/*.h',
-                      'folly/synchronization/*.h',
-
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.preserve_paths = 'folly/*.h',
@@ -91,12 +89,9 @@ Pod::Spec.new do |spec|
                         'folly/net/detail/*.h',
                         'folly/portability/*.h',
                         'folly/system/*.h',
-                        'folly/synchronization/*.h',
-
   spec.libraries           = "c++abi" # NOTE Apple-only: Keep c++abi here due to https://github.com/react-native-community/releases/issues/251
   spec.pod_target_xcconfig = { "USE_HEADERMAP" => "NO",
-                               "DEFINES_MODULE" => "YES",
-                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++20",
+                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/fast_float/include\" \"$(PODS_ROOT)/fmt/include\"",
                                # In dynamic framework (use_frameworks!) mode, ignore the unused and undefined boost symbols when generating the library.
                                "OTHER_LDFLAGS" => "\"-Wl,-U,_jump_fcontext\" \"-Wl,-U,_make_fcontext\"",
@@ -122,12 +117,28 @@ Pod::Spec.new do |spec|
                           'folly/concurrency/CacheLocality.h',
                           'folly/synchronization/*.h',
                           'folly/system/ThreadId.h'
-
-    fabric.preserve_paths = 'folly/concurrency/CacheLocality.h',
+                            
+    fabric.preserve_paths = 'folly/*.h',
+                            'folly/algorithm/simd/*.h',
+                            'folly/algorithm/simd/detail/*.h',
+                            'folly/chrono/*.h',
+                            'folly/container/*.h',
+                            'folly/container/detail/*.h',
+                            'folly/detail/*.h',
+                            'folly/functional/*.h',
+                            'folly/hash/*.h',
+                            'folly/json/*.h',
+                            'folly/lang/*.h',
+                            'folly/memory/*.h',
+                            'folly/memory/detail/*.h',
+                            'folly/net/*.h',
+                            'folly/net/detail/*.h',
+                            'folly/portability/*.h',
+                            'folly/system/*.h',
                             'folly/synchronization/*.h',
-                            'folly/system/ThreadId.h'
+                            'folly/concurrency/CacheLocality.h'
+    
   end
-
   # Folly has issues when compiled with iOS 10 set as deployment target
   # See https://github.com/facebook/folly/issues/1470 for details
   spec.platforms = { :ios => "15.1" }
