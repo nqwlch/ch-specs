@@ -3,7 +3,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-folly_compiler_flags = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_CFG_NO_COROUTINES=1 -DFOLLY_HAVE_CLOCK_GETTIME=1"
+folly_compiler_flags = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_CFG_NO_COROUTINES=1 -DFOLLY_HAVE_CLOCK_GETTIME=1 -Wno-comma -Wno-shorten-64-to-32"
 folly_release_version = "2024.11.18.0"
 folly_git_url = "https://github.com/nqwlch/folly.git"
 
@@ -70,6 +70,8 @@ Pod::Spec.new do |spec|
                       'folly/net/detail/*.h',
                       'folly/portability/*.h',
                       'folly/system/*.h',
+                      'folly/synchronization/*.h',
+
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.preserve_paths = 'folly/*.h',
@@ -89,6 +91,8 @@ Pod::Spec.new do |spec|
                         'folly/net/detail/*.h',
                         'folly/portability/*.h',
                         'folly/system/*.h',
+                        'folly/synchronization/*.h',
+
   spec.libraries           = "c++abi" # NOTE Apple-only: Keep c++abi here due to https://github.com/react-native-community/releases/issues/251
   spec.pod_target_xcconfig = { "USE_HEADERMAP" => "NO",
                                "DEFINES_MODULE" => "YES",
