@@ -31,11 +31,8 @@ Pod::Spec.new do |s|
   s.source                 = source
   
   # 明确指定所有源文件
-  s.source_files           = "react/featureflags/*.{h,hpp,cpp,mm}"
-  
-  # 指定公共头文件
-  s.public_header_files    = "react/featureflags/*.{h,hpp}"
-  
+  s.source_files           = "**/*.{cpp,h}"
+  s.header_dir             = "React_featureflags"
   s.compiler_flags         = folly_compiler_flags
 
   s.pod_target_xcconfig    = { 
@@ -49,6 +46,6 @@ Pod::Spec.new do |s|
   # Framework 支持配置
   if ENV['USE_FRAMEWORKS']
     s.module_name            = "React_featureflags"
-    s.header_mappings_dir  = "react/featureflags"
+    s.header_mappings_dir  = "React_featureflags"
   end
 end
