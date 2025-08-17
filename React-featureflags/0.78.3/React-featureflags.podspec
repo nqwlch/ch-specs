@@ -15,7 +15,7 @@ if version == '1000.0.0'
 else
   source[:tag] = "v#{version}"
 end
-header_search_paths = []
+header_search_paths = ["$(PODS_TARGET_SRCROOT)/.."]
 
 if ENV['USE_FRAMEWORKS']
   header_search_paths << "\"$(PODS_TARGET_SRCROOT)/../..\"" # this is needed to allow the feature flags access its own files
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   s.compiler_flags         = folly_compiler_flags
   s.header_dir             = "react/featureflags"
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++20", # rct_cxx_language_standard() - 已替换为硬编码值
-                               "HEADER_SEARCH_PATHS" => header_search_paths
+                               "HEADER_SEARCH_PATHS" => header_search_paths.join(" ")
                                }
   s.libraries = "stdc++"
 
