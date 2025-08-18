@@ -33,7 +33,7 @@ Pod::Spec.new do |spec|
         if [[ "$PLATFORM_NAME" == *"simulator"* ]]; then
             CURRENT_ARCH="x86_64"
         else
-            CURRENT_ARCH="armv7"
+            CURRENT_ARCH="arm64"
         fi
     fi
 
